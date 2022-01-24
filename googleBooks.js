@@ -89,3 +89,8 @@ function log(message)
       console.warn(messageType, message);
   }
 }
+
+window.onunload = function()
+{
+  timer = null;
+}
