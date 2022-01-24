@@ -1,5 +1,10 @@
 "use strict";
-
+/*-------------------------------------------------------------------------------*/
+/* @script        - googleBooks.js                                               */
+/* @date          - 22-JAN-2021                                                  */
+/* @author        - David B. Mitchell                                            */
+/* @description   - Performs book title search via the Google Books API.         */
+/*-------------------------------------------------------------------------------*/
 const googleApiUrl = "https://www.googleapis.com/books/v1/volumes?q=";
 const googleLogoUrl = "https://blog.bladecreativebranding.com/wp-content/uploads/2015/09/2015-4-Colour-Google-G-Thumbnail-300x300.png 4x";
 
