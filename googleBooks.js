@@ -16,15 +16,15 @@ window.onload = function()
    console.clear();
 }
 
-function changeHandler(event)
+function changeHandler(s)
 {
-  let { name, value } = document.querySelector("input");
-  
+  let { name, value } = document.querySelector(s);
+
   if (name === "searchKey")
   {
     if (value)
     {
-      let query = value;
+      let query = value.trim();
       window.clearTimeout(timer);
       timer = setTimeout
       (
@@ -37,21 +37,26 @@ function changeHandler(event)
   }
 }
 
+function clickHandler(s)
+{
+  let { name, value } = document.querySelector(`[name=${s}]`);
+
+  if (name === "reset")
+  {
+    document.querySelector("input").value = null;
+    document.querySelector("textarea").value = null;
+    document.querySelector("button").disabled = true;
+  }
+}
+
 function findBooks(query)
 {
-  let url = googleApiUrl + query.trim();
+  let url = googleApiUrl + query;
 
   fetch(url)
   .then(response => response.json()
   .then(data     => show(data)))
  .catch(error    => show(error));
-}
-
-function reset()
-{
-  document.querySelector("input").value = null;
-  document.querySelector("textarea").value = null;
-  document.querySelector("button").disabled = true;
 }
 
 function show(data)
