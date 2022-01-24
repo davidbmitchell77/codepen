@@ -6,7 +6,7 @@
 /* @description   - Performs book title search via the Google Books API.         */
 /*-------------------------------------------------------------------------------*/
 const googleApiUrl = "https://www.googleapis.com/books/v1/volumes?q=";
-const googleLogoUrl = "https://blog.bladecreativebranding.com/wp-content/uploads/2015/09/2015-4-Colour-Google-G-Thumbnail-300x300.png 4x";
+const googleLogoUrl = "2015-4-Colour-Google-G-Thumbnail-300x300.png 4x";
 
 let timer;
 
