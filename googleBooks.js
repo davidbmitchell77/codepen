@@ -90,7 +90,6 @@ function log(message)
   }
 }
 
-window.onunload = function()
-{
+window.onunload = function() {
   timer = null;
 }
