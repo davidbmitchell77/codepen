@@ -61,7 +61,7 @@ function findBooks(query)
 
 function show(data)
 {
-  document.querySelector("textarea").value = JSON.stringify(data, null, 2);
+  document.querySelector("textarea").value = stringify.pretty(data);
   document.querySelector("textarea").scrollTop = 0;
   document.querySelector("button").disabled = false;
   log(data);
@@ -89,6 +89,26 @@ function log(message)
       console.warn(messageType, message);
   }
 }
+
+const base64 =
+({
+  encode: function(s) { 
+    return btoa(unescape(encodeURIComponent(s)));
+  },
+  decode: function(s) {
+    return atob(s);
+  }
+});
+
+const stringify =
+({
+  plain: function(s) {
+    return JSON.stringify(s);
+  },
+  pretty: function(s) {
+    return JSON.stringify(s, null, 2);
+  }
+});
 
 window.onunload = function() {
   timer = null;
