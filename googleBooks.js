@@ -93,20 +93,20 @@ function log(message)
 const base64 =
 ({
   encode: function(s) { 
-    return btoa(unescape(encodeURIComponent(s)));
+    return ((s) ? btoa(unescape(encodeURIComponent(s))) : null);
   },
   decode: function(s) {
-    return atob(s);
+    return ((s) ? atob(s) : null);
   }
 });
 
 const stringify =
 ({
   plain: function(obj) {
-    return JSON.stringify(obj);
+    return ((obj) ? JSON.stringify(obj) : null);
   },
   pretty: function(obj) {
-    return JSON.stringify(obj, null, 2);
+    return ((obj) ? JSON.stringify(obj, null, 2) : null);
   }
 });
 
