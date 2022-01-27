@@ -37,6 +37,10 @@ function changeHandler(s)
   }
 }
 
+function clickHandler(s)
+{
+  let { name, value } = document.querySelector(`[name=${s}]`);
+
   if (name === "reset")
   {
     let input = document.querySelector("input");
