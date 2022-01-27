@@ -37,15 +37,20 @@ function changeHandler(s)
   }
 }
 
-function clickHandler(s)
-{
-  let { name, value } = document.querySelector(`[name=${s}]`);
-
   if (name === "reset")
   {
-    document.querySelector("input").value = null;
-    document.querySelector("textarea").value = null;
-    document.querySelector("button").disabled = true;
+    let input = document.querySelector("input");
+    input.value = null;
+
+    let textArea =  document.querySelector("textarea");
+    textArea.style.height = "auto";
+    textArea.style.resize = "none";
+    textArea.value = null;
+
+    let button = document.querySelector("button");
+    button.disabled = true;
+
+    console.clear();
   }
 }
 
@@ -61,9 +66,15 @@ function findBooks(query)
 
 function show(data)
 {
-  document.querySelector("textarea").value = stringify.pretty(data);
-  document.querySelector("textarea").scrollTop = 0;
-  document.querySelector("button").disabled = false;
+  let textArea =  document.querySelector("textarea");
+  textArea.scrollTop = 0;
+  textArea.style.borderColor = "#cfd8dc";
+  textArea.style.resize = "vertical";
+  textArea.value = stringify.pretty(data);
+
+  let button = document.querySelector("button");
+  button.disabled = false;
+
   log(data);
 }
 
