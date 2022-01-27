@@ -4,6 +4,8 @@
 /* @author        - David B. Mitchell                                     */
 /* @description   - Stylesheet for googleBooks.html web page.             */
 /*------------------------------------------------------------------------*/
+
+
 button {
   border: none;
   border-radius: 16px;
@@ -16,15 +18,15 @@ button {
   margin-right: 8.3rem;
 }
 button:disabled {
-  background-color: #a0a0a0;
+  background-color: #999292;
   pointer-events: none;
 }
 button:hover:enabled {
   background-color: #004c99;
 }
 .d1 {
-  margin-top: 25px;
-  margin-left: 10px;
+  margin-top: 95px;
+  margin-left: 650px;
   width: 40rem;
 }
 h2 {
@@ -36,13 +38,15 @@ img {
 }
 input {
   border-color: light-grey;
-  border-size: 1px;
   margin-bottom: 10px;
   font-family: tahoma,arial,verdana;
   width: 20rem;
+  height: 30px;
+  border-width: 1px;
 }
 label {
   font-family: tahoma,arial,verdana;
+  font-weight: bold;
 }
 textarea {
   color: #004c99;
