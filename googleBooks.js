@@ -102,11 +102,11 @@ const base64 =
 
 const stringify =
 ({
-  plain: function(s) {
-    return JSON.stringify(s);
+  plain: function(obj) {
+    return JSON.stringify(obj);
   },
-  pretty: function(s) {
-    return JSON.stringify(s, null, 2);
+  pretty: function(obj) {
+    return JSON.stringify(obj, null, 2);
   }
 });
 
