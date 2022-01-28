@@ -4,8 +4,6 @@
 /* @author        - David B. Mitchell                                     */
 /* @description   - Stylesheet for googleBooks.html web page.             */
 /*------------------------------------------------------------------------*/
-
-
 button {
   border: none;
   border-radius: 16px;
@@ -18,15 +16,15 @@ button {
   margin-right: 8.3rem;
 }
 button:disabled {
-  background-color: #999292;
+  background-color: #a0a0a0;
   pointer-events: none;
 }
 button:hover:enabled {
   background-color: #004c99;
 }
 .d1 {
-  margin-top: 95px;
-  margin-left: 650px;
+  margin-top: 25px;
+  margin-left: 10px;
   width: 40rem;
 }
 h2 {
@@ -37,30 +35,56 @@ img {
   margin-left: -7px;
 }
 input {
-  border-color: light-grey;
+  border-color: #d3d3d3;
+  border-width: 1px;
   margin-bottom: 10px;
   font-family: tahoma,arial,verdana;
   width: 20rem;
-  height: 30px;
-  border-width: 1px;
 }
 label {
   font-family: tahoma,arial,verdana;
-  font-weight: bold;
 }
 textarea {
   color: #004c99;
   font-family: verdana,tahoma,calibri,fixed,consolas,courier;
 }
+textarea:disabled {
+  resize: none;
+}
 textarea::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
+  width: 12px;
 }
 textarea::-webkit-scrollbar-track {
-  background: #0066cc;        /* color of the tracking area */
+  background: #0066cc;
 }
 textarea::-webkit-scrollbar-thumb {
-  background-color: orange;    /* color of the scroll thumb */
-  border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid yellow;  /* creates padding around scroll thumb */
+  background-color: #ffa500;
+  border-radius: 20px;
+  border: 3px solid #ffff00;
   height: 1.5rem;
+}
+.loader {
+  width : 80px;
+  height: 80px;
+  border: 16px solid #ffffff;
+  border-top:16px solid #bada55;
+  border-radius: 50%;
+  display: none;
+  margin-top: -12rem;
+  margin-left: 12rem;
+}
+.spin {
+  animation-name: spinner;
+  animation-duration: 0.45s;
+  animation-timing: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes
+spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
