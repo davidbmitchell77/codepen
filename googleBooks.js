@@ -6,14 +6,14 @@
 /* @description   - Performs book title search via the Google Books API.         */
 /*-------------------------------------------------------------------------------*/
 const googleApiUrl = "https://www.googleapis.com/books/v1/volumes?q=";
-const googleLogoUrl = "2015-4-Colour-Google-G-Thumbnail-300x300.png 4x";
+const googleLogoUrl = "https://blog.bladecreativebranding.com/wp-content/uploads/2015/09/2015-4-Colour-Google-G-Thumbnail-300x300.png 4x";
 
 let timer;
 
 window.onload = function()
 {
-   document.querySelector("img").srcset = googleLogoUrl;
-   console.clear();
+  document.querySelector("img").srcset = googleLogoUrl;
+  console.clear();
 }
 
 function changeHandler(s)
@@ -37,46 +37,54 @@ function changeHandler(s)
   }
 }
 
-function clickHandler(s)
-{
-  let { name, value } = document.querySelector(`[name=${s}]`);
-
-  if (name === "reset")
-  {
-    let input = document.querySelector("input");
-    input.value = null;
-
-    let textArea =  document.querySelector("textarea");
-    textArea.style.height = "auto";
-    textArea.style.resize = "none";
-    textArea.value = null;
-
-    let button = document.querySelector("button");
-    button.disabled = true;
-
-    console.clear();
-  }
-}
-
 function findBooks(query)
 {
+  let textArea =  document.querySelector("textarea");
+  textArea.value = null;
+
+  let spinner = document.querySelector(".loader");
+  spinner.classList.add("spin");
+  spinner.style.display = "flex";
+  
   let url = googleApiUrl + query;
 
-  fetch(url)
-  .then(response => response.json()
-  .then(data     => show(data)))
- .catch(error    => show(error));
+  fetch(url).then
+  (
+    (response) =>
+    {
+      response.json().then
+      (
+        (data) => {
+          show(data);
+        }
+      ).catch
+      (
+        (error) => {
+          show(error);
+        }
+      )
+    }
+  ).catch
+  (
+    (error) => {
+      show(error)
+    }
+  );
 }
 
 function show(data)
 {
+  let spinner = document.querySelector(".loader");
+  spinner.classList.remove("spin");
+  spinner.style.display = "none";
+
   let textArea =  document.querySelector("textarea");
   textArea.scrollTop = 0;
   textArea.style.borderColor = "#cfd8dc";
   textArea.style.resize = "vertical";
-  textArea.value = stringify.pretty(data);
+  textArea.value = utils.stringify.pretty(data);
 
-  let button = document.querySelector("button");
+  let button =  document.querySelector("button");
   button.disabled = false;
 
   log(data);
@@ -89,6 +97,9 @@ function log(message)
   switch (messageType.toLowerCase())
   {
     case "[object string]":
+      console.log(message);
+      break;
+    case "[object number]":
       console.log(message);
       break;
     case "[object array]":
@@ -105,26 +116,50 @@ function log(message)
   }
 }
 
-const base64 =
-({
-  encode: function(s) { 
-    return ((s) ? btoa(unescape(encodeURIComponent(s))) : null);
-  },
-  decode: function(s) {
-    return ((s) ? atob(s) : null);
-  }
-});
+window.onclick = function(event)
+{
+  let { name, value } = event.target;
 
-const stringify =
-({
-  plain: function(obj) {
-    return ((obj) ? JSON.stringify(obj) : null);
-  },
-  pretty: function(obj) {
-    return ((obj) ? JSON.stringify(obj, null, 2) : null);
+  if (name === "reset")
+  {
+    let input = document.querySelector("input");
+    input.value = null;
+
+    let textArea =  document.querySelector("textarea");
+    textArea.style.borderColor = "#d3d3d3";
+    textArea.style.height = "auto";
+    textArea.style.resize = "none";
+    textArea.value = null;
+
+    let button = document.querySelector("button");
+    button.disabled = true;
+
+    console.clear();
   }
-});
+}
 
 window.onunload = function() {
   timer = null;
 }
+
+const utils =
+{
+  base64:
+  {
+    encode: function(s) { 
+      return ((s) ? btoa(unescape(encodeURIComponent(s))) : null);
+    },
+    decode: function(s) {
+      return ((s) ? atob(s) : null);
+    }
+  },
+  stringify:
+  {
+    plain: function(obj) {
+      return ((obj) ? JSON.stringify(obj) : null);
+    },
+    pretty: function(obj) {
+      return ((obj) ? JSON.stringify(obj, null, 2) : null);
+    }
+  }
+};
