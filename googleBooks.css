@@ -76,7 +76,7 @@ textarea::-webkit-scrollbar-thumb {
 .spin {
   animation-name: spinner;
   animation-duration: 0.45s;
-  animation-timing: linear;
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 @keyframes
